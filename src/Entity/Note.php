@@ -9,6 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: NoteRepository::class)]
+#[ORM\HasLifecycleCallbacks] 
 class Note
 {
     #[ORM\Id]
@@ -29,7 +30,7 @@ class Note
     private ?\DateTimeImmutable $endAt = null;
 
     #[ORM\Column]
-    private ?int $priorite = null;
+    private ?int $propriete = null;
 
     #[ORM\ManyToOne(inversedBy: 'notes')]
     #[ORM\JoinColumn(nullable: false)]
@@ -78,6 +79,15 @@ class Note
 
         return $this;
     }
+	
+	// Cette méthode sera appelée avant la persistance de l'entité
+    #[ORM\PrePersist]
+    public function setCreatedAtAutomatically(): void
+    {
+        if ($this->createdAt === null) {
+            $this->createdAt = new \DateTimeImmutable(); // Définir la date et l'heure actuelles
+        }
+    }
 
     public function getCreatedAt(): ?\DateTimeImmutable
     {
@@ -103,14 +113,14 @@ class Note
         return $this;
     }
 
-    public function getPriorite(): ?int
+    public function getPropriete(): ?int
     {
-        return $this->priorite;
+        return $this->propriete;
     }
 
-    public function setPriorite(int $priorite): static
+    public function setPropriete(int $propriete): static
     {
-        $this->priorite = $priorite;
+        $this->propriete = $propriete;
 
         return $this;
     }

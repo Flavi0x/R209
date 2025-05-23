@@ -1,20 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DashboardController!{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="container mt-5 text-center">
+    <h1 class="display-4 mb-4">Bienvenue sur mes notes</h1>
+    
+    <p class="lead mb-5">
+        Utilise la navigation ci-dessous pour accéder rapidement aux différentes sections.
+    </p>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-3 mb-3">
+            <a href="{{ path('app_note_index') }}" class="btn btn-primary btn-lg w-100">
+                📓 Notes
+            </a>
+        </div>
+        <div class="col-md-3 mb-3">
+            <a href="{{ path('app_tag_index') }}" class="btn btn-success btn-lg w-100">
+                🏷️ Tags
+            </a>
+        </div>
+        <div class="col-md-3 mb-3">
+            <a href="{{ path('app_etat_index') }}" class="btn btn-warning btn-lg w-100">
+                📊 États
+            </a>
+        </div>
+    </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/augie/Documents/Projet/projet/src/Controller/DashboardController.php</code></li>
-        <li>Your template at <code>C:/Users/augie/Documents/Projet/projet/templates/dashboard/index.html.twig</code></li>
-    </ul>
+    <hr class="my-5">
+
+    
+    
 </div>
 {% endblock %}
